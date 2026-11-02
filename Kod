@@ -1,44 +1,233 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OyunKüpü — Gece Vardiyası</title>
 <style>
-:root{color-scheme:dark;--gold:#e9c66b;--cream:#f3e7c6}*{box-sizing:border-box}body{margin:0;background:#050709;color:var(--cream);font-family:Georgia,'Times New Roman',serif;min-height:100vh;display:grid;place-items:center;padding:12px}.game{width:min(100%,760px);min-height:min(94vh,820px);position:relative;overflow:hidden;border:1px solid #554b37;border-radius:12px;background:linear-gradient(#080b10 0 20%,#172027 45%,#0a0c0e 100%);box-shadow:0 0 45px #000;display:flex;flex-direction:column}.top{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #5c5036;background:#08090bd9;z-index:2}.brand{letter-spacing:3px;font:700 12px Arial,sans-serif;color:var(--gold)}.sound{background:#171819;border:1px solid #61553b;color:#e9dfc3;border-radius:20px;padding:7px 11px;font-size:12px;cursor:pointer}.scene{position:relative;flex:1;min-height:370px;overflow:hidden;background:linear-gradient(180deg,#121922 0%,#242622 45%,#0a0b0c 100%);transition:transform 0.4s ease}.scene.shake{animation:camShake .5s ease-in-out}.shelves{position:absolute;left:3%;top:15%;width:27%;height:45%;border:5px solid #3b3124;background:repeating-linear-gradient(to bottom,#2d2319 0 5px,#111315 5px 34px);box-shadow:inset 0 0 18px #000,0 0 12px #000}.shelves:before{content:'';position:absolute;inset:8px;background:repeating-linear-gradient(90deg,#b53d2b 0 9px,#d8a43b 9px 17px,#3f6950 17px 25px,#c7b998 25px 32px,#274e75 32px 40px);opacity:.7}.fridges{position:absolute;right:3%;top:15%;width:28%;height:45%;border:5px solid #4a524f;background:repeating-linear-gradient(90deg,#0a171d 0 30%,#5c6b68 31% 33%,#0c1a21 34% 64%,#5c6b68 65% 67%,#0a171d 68%);box-shadow:inset 0 0 20px #4d899b,0 0 15px #000}.fridges:after{content:'SOĞUK İÇECEK';position:absolute;top:-22px;left:0;font:700 9px Arial;color:#9bc1cb;letter-spacing:2px}.register{position:absolute;z-index:2;right:15%;bottom:22%;width:60px;height:32px;background:#1a201f;border:3px solid #636855;box-shadow:0 0 8px #000}.register:after{content:'';position:absolute;left:8px;top:-12px;width:30px;height:12px;background:#3e5248;border:2px solid #717a65}.window{position:absolute;left:5%;top:8%;width:25% ;height:30%;border:8px solid #27221b;background:linear-gradient(#0d151e,#05080c);box-shadow:inset 0 0 24px #000}.neon{position:absolute;right:8%;top:8%;font:700 clamp(10px,2.2vw,16px) Arial,sans-serif;letter-spacing:3px;color:#f0a832;text-shadow:0 0 8px #ff9e1b,0 0 20px #bf4d11;transform:rotate(-2deg)}.counter{position:absolute;bottom:7%;left:-3%;width:106%;height:23%;background:linear-gradient(#423525,#1b1612 25%,#0a0807);border-top:5px solid #6b533a;box-shadow:0 -8px 24px #000}.door{position:absolute;right:8%;top:5%;height:53%;width:20%;background:linear-gradient(90deg,#191512,#3b2c1f,#14110e);border:5px solid #271e17;transform-origin:right;transition:transform 1.2s cubic-bezier(0.4,0,0.2,1)}.door.open{transform:perspective(400px) rotateY(-70deg)}.door:after{content:"";position:absolute;right:12%;top:50%;width:7px;height:7px;background:#b38942;border-radius:50%}.gun{position:absolute;top:126px;left:75px;width:48px;height:12px;background:linear-gradient(#8a8e8d,#2a2e2e);border:1px solid #111;z-index:7;transform:rotate(-20deg) scale(0);transform-origin:left center;opacity:0}.gun:after{content:'';position:absolute;left:8px;top:8px;width:12px;height:15px;background:#262626;transform:rotate(15deg);border:1px solid #111}.gun.draw{animation:drawgun .6s ease-out forwards}@keyframes drawgun{0%{transform:translate(15px,15px) rotate(-40deg) scale(0);opacity:0}100%{transform:translate(0,0) rotate(-10deg) scale(1);opacity:1}}.man{position:absolute;left:50%;bottom:19%;width:120px;height:260px;transform:translateX(-50%) translateY(20px);opacity:0;transition:all 1s;filter:drop-shadow(0 12px 10px #000)}.man.show{opacity:1;transform:translateX(-50%) translateY(0)}.head{position:absolute;top:5px;left:34px;width:53px;height:63px;border-radius:45% 45% 40% 40%;background:linear-gradient(90deg,#7a593d,#b08761,#664731);z-index:2}.hair{position:absolute;top:0;left:30px;width:61px;height:28px;border-radius:50% 50% 15% 15%;background:#1c1411;z-index:3}.eyes{position:absolute;top:30px;left:42px;width:38px;height:3px;background:#140e0a;z-index:4}.body{position:absolute;top:63px;left:15px;width:91px;height:139px;background:linear-gradient(90deg,#121415,#2e2b29,#0c0e0f);clip-path:polygon(25% 0,75% 0,100% 100%,0 100%)}.shirt{position:absolute;top:64px;left:48px;width:27px;height:86px;background:#c2b89e;clip-path:polygon(0 0,100% 0,70% 100%,30% 100%);z-index:2}.tie{position:absolute;top:72px;left:57px;width:12px;height:85px;background:#3d1d1a;clip-path:polygon(50% 0,100% 15%,65% 100%,35% 100%,0 15%);z-index:3}.arm{position:absolute;top:115px;left:79px;width:45px;height:19px;border-radius:10px;background:#8f6949;transform:rotate(13deg);z-index:4}.hand{position:absolute;top:112px;left:103px;width:28px;height:16px;border-radius:50%;background:#a17855;z-index:5}.coin{position:absolute;top:104px;left:112px;width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff0a4,#d5a532 50%,#765015);border:2px solid #f5d66f;box-shadow:0 0 14px #e2b13c;z-index:6}.coin.flip{animation:flip 1.5s ease-in-out 2}@keyframes flip{0%{transform:translateY(0) rotateY(0) scale(1)}50%{transform:translateY(-145px) rotateY(720deg) scale(1.25)}100%{transform:translateY(0) rotateY(1440deg) scale(1)}}.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 25%,#000b 100%)}.dialog{padding:20px 18px 18px;background:linear-gradient(#0e0f10,#050606);border-top:1px solid #3b3121;z-index:2}.eyebrow{font:11px Arial,sans-serif;letter-spacing:2px;color:#a3884f;margin-bottom:10px}.line{font-size:clamp(16px,3.8vw,21px);line-height:1.45;min-height:60px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.btn{flex:1;min-width:115px;padding:13px 12px;border:1px solid #7d6130;border-radius:4px;background:#b59042;color:#120e07;font:700 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer}.btn.secondary{background:#141414;color:#d4c5a0;border-color:#4a4131}.btn:disabled{opacity:.45}.result{position:absolute;inset:0;z-index:8;background:#020202;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:25px}.result.show{display:flex;animation:fadeInDark 1.2s forwards}@keyframes fadeInDark{from{opacity:0}to{opacity:1}}@keyframes camShake{0%{transform:translate(0,0) rotate(0deg)}20%{transform:translate(-10px,15px) rotate(-3deg)}40%{transform:translate(12px,-8px) rotate(2deg)}60%{transform:translate(-8px,25px) rotate(-5deg)}80%{transform:translate(5px,15px) rotate(1deg)}100%{transform:translate(0,40px) rotate(-15deg);opacity:0.8}}@keyframes fallDown{0%{transform:translateY(0) rotate(0deg)}100%{transform:translateY(80px) rotate(-12deg);opacity:0}}.result h1{font:900 clamp(38px,10vw,64px) Arial,sans-serif;letter-spacing:5px;margin:0 0 18px;color:#d9534f}.result p{font-size:18px;line-height:1.5;max-width:450px;color:#ccc}.result .btn{flex:none;width:min(100%,260px);margin-top:16px}.footer{text-align:center;padding:8px;font:10px Arial,sans-serif;color:#5e5545;letter-spacing:1px;background:#050606}@media(max-height:650px){.scene{min-height:300px}.man{transform:translateX(-50%) scale(.8);transform-origin:bottom center}.man.show{transform:translateX(-50%) translateY(0) scale(.8)}.dialog{padding:12px}}
+:root{color-scheme:dark;--gold:#e9c66b;--cream:#f3e7c6}
+*{box-sizing:border-box}
+body{margin:0;background:#050709;color:var(--cream);font-family:Georgia,serif;min-height:100vh;display:grid;place-items:center;padding:12px}
+.game{width:min(100%,760px);min-height:min(94vh,820px);position:relative;overflow:hidden;border:1px solid #554b37;border-radius:12px;background:linear-gradient(#080b10 0 20%,#172027 45%,#0a0c0e 100%);box-shadow:0 0 45px #000;display:flex;flex-direction:column}
+.top{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #5c5036;background:#08090bd9;z-index:2}
+.brand{letter-spacing:3px;font:700 12px Arial,sans-serif;color:var(--gold)}
+.sound{background:#171819;border:1px solid #61553b;color:#e9dfc3;border-radius:20px;padding:7px 11px;font-size:12px;cursor:pointer}
+.scene{position:relative;flex:1;min-height:370px;overflow:hidden;background:linear-gradient(180deg,#121922 0%,#242622 45%,#0a0b0c 100%);transition:transform 0.4s ease}
+.scene.shake{animation:camShake .5s ease-in-out}
+.shelves{position:absolute;left:3%;top:15%;width:27%;height:45%;border:5px solid #3b3124;background:repeating-linear-gradient(to bottom,#2d2319 0 5px,#111315 5px 34px);box-shadow:inset 0 0 18px #000,0 0 12px #000}
+.shelves:before{content:'';position:absolute;inset:8px;background:repeating-linear-gradient(90deg,#b53d2b 0 9px,#d8a43b 9px 17px,#3f6950 17px 25px,#c7b998 25px 32px,#274e75 32px 40px);opacity:.7}
+.fridges{position:absolute;right:3%;top:15%;width:28%;height:45%;border:5px solid #4a524f;background:repeating-linear-gradient(90deg,#0a171d 0 30%,#5c6b68 31% 33%,#0c1a21 34% 64%,#5c6b68 65% 67%,#0a171d 68%);box-shadow:inset 0 0 20px #4d899b,0 0 15px #000}
+.fridges:after{content:'SOĞUK İÇECEK';position:absolute;top:-22px;left:0;font:700 9px Arial;color:#9bc1cb;letter-spacing:2px}
+.register{position:absolute;z-index:2;right:15%;bottom:22%;width:60px;height:32px;background:#1a201f;border:3px solid #636855;box-shadow:0 0 8px #000}
+.register:after{content:'';position:absolute;left:8px;top:-12px;width:30px;height:12px;background:#3e5248;border:2px solid #717a65}
+.window{position:absolute;left:5%;top:8%;width:25%;height:30%;border:8px solid #27221b;background:linear-gradient(#0d151e,#05080c);box-shadow:inset 0 0 24px #000}
+.neon{position:absolute;right:8%;top:8%;font:700 clamp(10px,2.2vw,16px) Arial,sans-serif;letter-spacing:3px;color:#f0a832;text-shadow:0 0 8px #ff9e1b,0 0 20px #bf4d11;transform:rotate(-2deg)}
+.counter{position:absolute;bottom:7%;left:-3%;width:106%;height:23%;background:linear-gradient(#423525,#1b1612 25%,#0a0807);border-top:5px solid #6b533a;box-shadow:0 -8px 24px #000}
+.door{position:absolute;right:8%;top:5%;height:53%;width:20%;background:linear-gradient(90deg,#191512,#3b2c1f,#14110e);border:5px solid #271e17;transform-origin:right;transition:transform 1.2s cubic-bezier(0.4,0,0.2,1)}
+.door.open{transform:perspective(400px) rotateY(-70deg)}
+.door:after{content:"";position:absolute;right:12%;top:50%;width:7px;height:7px;background:#b38942;border-radius:50%}
+.gun{position:absolute;top:126px;left:75px;width:48px;height:12px;background:linear-gradient(#8a8e8d,#2a2e2e);border:1px solid #111;z-index:7;transform:rotate(-20deg) scale(0);transform-origin:left center;opacity:0}
+.gun:after{content:'';position:absolute;left:8px;top:8px;width:12px;height:15px;background:#262626;transform:rotate(15deg);border:1px solid #111}
+.gun.draw{animation:drawgun .6s ease-out forwards}
+@keyframes drawgun{0%{transform:translate(15px,15px) rotate(-40deg) scale(0);opacity:0}100%{transform:translate(0,0) rotate(-10deg) scale(1);opacity:1}}
+.man{position:absolute;left:50%;bottom:19%;width:120px;height:260px;transform:translateX(-50%) translateY(20px);opacity:0;transition:all 1s;filter:drop-shadow(0 12px 10px #000)}
+.man.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.head{position:absolute;top:5px;left:34px;width:53px;height:63px;border-radius:45% 45% 40% 40%;background:linear-gradient(90deg,#7a593d,#b08761,#664731);z-index:2}
+.hair{position:absolute;top:0;left:30px;width:61px;height:28px;border-radius:50% 50% 15% 15%;background:#1c1411;z-index:3}
+.eyes{position:absolute;top:30px;left:42px;width:38px;height:3px;background:#140e0a;z-index:4}
+.body{position:absolute;top:63px;left:15px;width:91px;height:139px;background:linear-gradient(90deg,#121415,#2e2b29,#0c0e0f);clip-path:polygon(25% 0,75% 0,100% 100%,0 100%)}
+.shirt{position:absolute;top:64px;left:48px;width:27px;height:86px;background:#c2b89e;clip-path:polygon(0 0,100% 0,70% 100%,30% 100%);z-index:2}
+.tie{position:absolute;top:72px;left:57px;width:12px;height:85px;background:#3d1d1a;clip-path:polygon(50% 0,100% 15%,65% 100%,35% 100%,0 15%);z-index:3}
+.arm{position:absolute;top:115px;left:79px;width:45px;height:19px;border-radius:10px;background:#8f6949;transform:rotate(13deg);z-index:4}
+.hand{position:absolute;top:112px;left:103px;width:28px;height:16px;border-radius:50%;background:#a17855;z-index:5}
+.coin{position:absolute;top:104px;left:112px;width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff0a4,#d5a532 50%,#765015);border:2px solid #f5d66f;box-shadow:0 0 14px #e2b13c;z-index:6}
+.coin.flip{animation:flip 1.5s ease-in-out 2}
+@keyframes flip{0%{transform:translateY(0) rotateY(0) scale(1)}50%{transform:translateY(-145px) rotateY(720deg) scale(1.25)}100%{transform:translateY(0) rotateY(1440deg) scale(1)}}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 25%,#000b 100%)}
+.dialog{padding:20px 18px 18px;background:linear-gradient(#0e0f10,#050606);border-top:1px solid #3b3121;z-index:2}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:2px;color:#a3884f;margin-bottom:10px}
+.line{font-size:clamp(16px,3.8vw,21px);line-height:1.45;min-height:60px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.btn{flex:1;min-width:115px;padding:13px 12px;border:1px solid #7d6130;border-radius:4px;background:#b59042;color:#120e07;font:700 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.btn.secondary{background:#141414;color:#d4c5a0;border-color:#4a4131}
+.btn:disabled{opacity:.45}
+.result{position:absolute;inset:0;z-index:8;background:#020202;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:25px}
+.result.show{display:flex;animation:fadeInDark 1.2s forwards}
+@keyframes fadeInDark{from{opacity:0}to{opacity:1}}
+@keyframes camShake{0%{transform:translate(0,0) rotate(0deg)}20%{transform:translate(-10px,15px) rotate(-3deg)}40%{transform:translate(12px,-8px) rotate(2deg)}60%{transform:translate(-8px,25px) rotate(-5deg)}80%{transform:translate(5px,15px) rotate(1deg)}100%{transform:translate(0,40px) rotate(-15deg);opacity:0.8}}
+.result h1{font:900 clamp(38px,10vw,64px) Arial,sans-serif;letter-spacing:5px;margin:0 0 18px;color:#d9534f}
+.result p{font-size:18px;line-height:1.5;max-width:450px;color:#ccc}
+.result .btn{flex:none;width:min(100%,260px);margin-top:16px}
+.footer{text-align:center;padding:8px;font:10px Arial,sans-serif;color:#5e5545;letter-spacing:1px;background:#050606}
 </style>
 </head>
-<body><main class="game"><header class="top"><div class="brand">BENZİNLİK KASASI</div><button class="sound" id="sound">SES: AÇIK</button></header><section class="scene" id="scene"><div class="window"></div><div class="shelves"></div><div class="fridges"></div><div class="neon">BENZİN & MARKET</div><div class="door" id="door"></div><div class="man" id="man"><div class="hair"></div><div class="head"></div><div class="eyes"></div><div class="body"></div><div class="shirt"></div><div class="tie"></div><div class="arm"></div><div class="hand"></div><div class="coin" id="coin"></div><div class="gun" id="gun"></div></div><div class="register"></div><div class="counter"></div><div class="vignette"></div></section><section class="dialog"><div class="eyebrow" id="eyebrow">GECE VARDİYASI • ÇÖL KENARI</div><div class="line" id="line">Dışarıda otoban rüzgarı esiyor. Floresan lamba hafifçe vızıldıyor.</div><div class="actions" id="actions"><button class="btn" id="next">VARDİYAYA BAŞLA</button></div></section><div class="result" id="result"><h1 id="resultTitle">ÖLDÜN</h1><p id="resultText"></p><button class="btn" id="again">YENİDEN DENE</button></div><footer class="footer">HER SEÇİMİN BİR BEDELİ VARDIR</footer></main>
+<body>
+<main class="game">
+  <header class="top">
+    <div class="brand">BENZİNLİK KASASI</div>
+    <button class="sound" id="sound">SES: AÇIK</button>
+  </header>
+  <section class="scene" id="scene">
+    <div class="window"></div>
+    <div class="shelves"></div>
+    <div class="fridges"></div>
+    <div class="neon">BENZİN & MARKET</div>
+    <div class="door" id="door"></div>
+    <div class="man" id="man">
+      <div class="hair"></div>
+      <div class="head"></div>
+      <div class="eyes"></div>
+      <div class="body"></div>
+      <div class="shirt"></div>
+      <div class="tie"></div>
+      <div class="arm"></div>
+      <div class="hand"></div>
+      <div class="coin" id="coin"></div>
+      <div class="gun" id="gun"></div>
+    </div>
+    <div class="register"></div>
+    <div class="counter"></div>
+    <div class="vignette"></div>
+  </section>
+  <section class="dialog">
+    <div class="eyebrow" id="eyebrow">GECE VARDİYASI • ÇÖL KENARI</div>
+    <div class="line" id="line">Dışarıda otoban rüzgarı esiyor. Floresan lamba hafifçe vızıldıyor.</div>
+    <div class="actions" id="actions">
+      <button class="btn" id="next">VARDİYAYA BAŞLA</button>
+    </div>
+  </section>
+  <div class="result" id="result">
+    <h1 id="resultTitle">ÖLDÜN</h1>
+    <p id="resultText"></p>
+    <button class="btn" id="again">YENİDEN DENE</button>
+  </div>
+  <footer class="footer">HER SEÇİMİN BİR BEDELİ VARDIR</footer>
+</main>
 <script>
-(()=>{
-const $=id=>document.getElementById(id);let soundOn=true,audio=null,locked=false,timers=[];
-const lines=[
-"İyi geceler dostum... Uzun bir yolculuktan geldim, çok bekletmek istemiyorum.",
-"Biliyor musun, otobanda zaman su gibi akıp gidiyor ama benzinlikte durunca saatler duruyor.",
-"Şu küçücük metal paranın kaderi belirlemesi garip değil mi? Tıpkı insan hayatı gibi.",
-"Neyse, fazla uzatmayalım. Hazırsan bakalım şansın bu gece yanındat mı..."
-];
-function clearTimers(){timers.forEach(clearTimeout);timers=[]}
-function beep(freq=90,duration=.25){if(!soundOn)return;try{audio=audio||new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended'){audio.resume()}const o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=freq;g.gain.value=.045;o.connect(g);g.connect(audio.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+duration);o.stop(audio.currentTime+duration)}catch(e){}}
-$('sound').onclick=()=>{soundOn=!soundOn;$('sound').textContent='SES: '+(soundOn?'AÇIK':'KAPALI');if(soundOn)beep(160,.1)};
-function reset(){
-  clearTimers();locked=false;
-  $('scene').classList.remove('shake');$('scene').style.transform = '';
-  $('door').classList.remove('open');$('man').classList.remove('show');
-  $('coin').classList.remove('flip');$('gun').classList.remove('draw');
-  $('result').classList.remove('show');$('resultTitle').textContent='ÖLDÜN';
-  $('eyebrow').textContent='GECE VARDİYASI • ÇÖL KENARI';
-  $('line').textContent='Dışarıda otoban rüzgarı esiyor. Floresan lamba hafifçe vızıldıyor.';
-  $('actions').innerHTML='<button class="btn" id="next">VARDİYAYA BAŞLA</button>';
-  $('next').onclick=startScene;
-}
-function startScene(){
-  if(locked)return;locked=true;
-  $('actions').innerHTML='';$('door').classList.add('open');
-  beep(65,.4);
-  $('eyebrow').textContent='KAPI ÇALDI';
-  $('line').textContent='Otomatik kapı açılır. Yorgun yüzlü bir adam markete girip yavaş adımlarla kasaya yaklaşır.';
-  const t1=setTimeout(()=>{
-    if(!$('man'))return;
-    $('man').classList.add('show');
-    beep(75,.2);
-    const t2=setTimeout(()
+(() => {
+  const $ = id => document.getElementById(id);
+  let soundOn = true, audio = null, locked = false, timers = [];
+  const lines = [
+    "İyi geceler dostum... Uzun bir yolculuktan geldim, çok bekletmek istemiyorum.",
+    "Biliyor musun, otobanda zaman su gibi akıp gidiyor ama benzinlikte durunca saatler duruyor.",
+    "Şu küçücük metal paranın kaderi belirlemesi garip değil mi? Tıpkı insan hayatı gibi.",
+    "Neyse, fazla uzatmayalım. Hazırsan bakalım şansın bu gece yanında mı..."
+  ];
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+  function beep(freq = 90, duration = .25) {
+    if (!soundOn) return;
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === 'suspended') { audio.resume(); }
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.type = 'sine'; o.frequency.value = freq;
+      g.gain.value = .045;
+      o.connect(g); g.connect(audio.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(.001, audio.currentTime + duration);
+      o.stop(audio.currentTime + duration);
+    } catch (e) {}
+  }
+  $('sound').onclick = () => {
+    soundOn = !soundOn;
+    $('sound').textContent = 'SES: ' + (soundOn ? 'AÇIK' : 'KAPALI');
+    if (soundOn) beep(160, .1);
+  };
+  function reset() {
+    clearTimers(); locked = false;
+    $('scene').classList.remove('shake');
+    $('scene').style.transform = '';
+    $('door').classList.remove('open');
+    $('man').classList.remove('show');
+    $('coin').classList.remove('flip');
+    $('gun').classList.remove('draw');
+    $('result').classList.remove('show');
+    $('resultTitle').textContent = 'ÖLDÜN';
+    $('eyebrow').textContent = 'GECE VARDİYASI • ÇÖL KENARI';
+    $('line').textContent = 'Dışarıda otoban rüzgarı esiyor. Floresan lamba hafifçe vızıldıyor.';
+    $('actions').innerHTML = '<button class="btn" id="next">VARDİYAYA BAŞLA</button>';
+    $('next').onclick = startScene;
+  }
+  function startScene() {
+    if (locked) return; locked = true;
+    $('actions').innerHTML = '';
+    $('door').classList.add('open');
+    beep(65, .4);
+    $('eyebrow').textContent = 'KAPI ÇALDI';
+    $('line').textContent = 'Otomatik kapı açılır. Yorgun yüzlü bir adam markete girip yavaş adımlarla kasaya yaklaşır.';
+    const t1 = setTimeout(() => {
+      if (!$('man')) return;
+      $('man').classList.add('show');
+      beep(75, .2);
+      const t2 = setTimeout(() => speak(0), 2000);
+      timers.push(t2);
+    }, 600);
+    timers.push(t1);
+  }
+  function speak(i) {
+    if (i >= lines.length) {
+      locked = false;
+      $('eyebrow').textContent = 'SON KARAR';
+      $('actions').innerHTML = '<button class="btn" id="heads">YAZI</button><button class="btn secondary" id="tails">TURA</button>';
+      $('heads').onclick = () => play('YAZI');
+      $('tails').onclick = () => play('TURA');
+      return;
+    }
+    $('line').textContent = lines[i];
+    $('eyebrow').textContent = 'YABANCI MÜŞTERİ';
+    beep(80 + i * 10, .15);
+    const delay = i === 0 ? 5000 : i === 1 ? 5800 : i === 2 ? 5200 : 4500;
+    const t = setTimeout(() => speak(i + 1), delay);
+    timers.push(t);
+  }
+  function play(choice) {
+    if (locked) return; locked = true; clearTimers();
+    $('actions').innerHTML = '';
+    $('eyebrow').textContent = 'HAVAYA ATILAN PARA';
+    $('line').textContent = 'Adam madeni parayı parmaklarının arasında çevirip havaya fırlatıyor... Para havada dönüyor.';
+    $('coin').classList.add('flip');
+    beep(180, .15);
+    
+    const t = setTimeout(() => {
+      const outcome = Math.random() < .5 ? 'YAZI' : 'TURA';
+      if (choice === outcome) {
+        $('result').classList.add('show');
+        $('resultTitle').textContent = outcome + ' — ŞANSLISIN';
+        $('resultText').textContent = 'Para yere düşüyor. İstediğin tutturuldu. Adam başını sallayıp sessizce arkasını dönüp dışarı çıkıyor.';
+        beep(440, .35);
+      } else {
+        $('eyebrow').textContent = 'YANLIŞ TAHMİN';
+        $('line').textContent = 'Para yere düşer. Adamın yüzündeki yorgun ifade bir anda sertleşir. Eli ceketine gider.';
+        beep(55, .4);
+        
+        const t2 = setTimeout(() => {
+          if (!$('gun')) return;
+          $('gun').classList.add('draw');
+          beep(48, .25);
+          
+          const t3 = setTimeout(() => {
+            $('scene').classList.add('shake');
+            beep(30, .8);
+            
+            const t4 = setTimeout(() => {
+              if (!$('result')) return;
+              $('result').classList.add('show');
+              $('resultTitle').textContent = 'ÖLDÜN';
+              $('resultText').textContent = 'Kamera yere düşerken sert bir ses duyulur. Görüntü karardı... Gece vardiyası burada bitti.';
+            }, 700);
+            timers.push(t4);
+            
+          }, 900);
+          timers.push(t3);
+        }, 1300);
+        timers.push(t2);
+      }
+    }, 3100);
+    timers.push(t);
+  }
+  $('next').onclick = startScene;
+  $('again').onclick = reset;
+})();
+</script>
+</body>
+</html>
